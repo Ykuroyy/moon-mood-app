@@ -6,7 +6,7 @@ import { getMoonPhase } from './utils/moonPhase';
 import { fortunes } from './data/fortunes';
 
 function App() {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate] = useState(new Date());
   const [moonPhase, setMoonPhase] = useState(null);
   const [fortune, setFortune] = useState(null);
 
