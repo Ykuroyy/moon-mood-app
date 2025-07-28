@@ -63,6 +63,48 @@
   font-size: 0.95rem;
 }
 
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.moon-button {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-align: center;
+  padding: 2rem;
+}
+
+.moon-button:hover {
+  transform: scale(1.05);
+}
+
+.moon-icon {
+  font-size: 10rem;
+  margin-bottom: 1rem;
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.7));
+}
+
+.tap-text {
+  font-size: 1.2rem;
+  color: #6b5b95;
+  opacity: 0.8;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @keyframes rotate {
   from {
     transform: rotate(0deg);

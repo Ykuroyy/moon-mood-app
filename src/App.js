@@ -9,6 +9,7 @@ function App() {
   const [currentDate] = useState(new Date());
   const [moonPhase, setMoonPhase] = useState(null);
   const [fortune, setFortune] = useState(null);
+  const [showFortune, setShowFortune] = useState(false);
 
   useEffect(() => {
     const phase = getMoonPhase(currentDate);
@@ -26,6 +27,10 @@ function App() {
     return date.toLocaleDateString('ja-JP', options);
   };
 
+  const handleMoonClick = () => {
+    setShowFortune(true);
+  };
+
   if (!moonPhase || !fortune) {
     return <div className="loading">読み込み中...</div>;
   }
@@ -41,12 +46,25 @@ function App() {
         <p className="app-subtitle">月の満ち欠けで占う、あなたの今日</p>
       </header>
 
-      <div className="date-display">
-        <p>{formatDate(currentDate)}</p>
-      </div>
-
-      <MoonDisplay moonPhase={moonPhase} />
-      <Fortune fortune={fortune} />
+      {!showFortune ? (
+        <div className="start-screen">
+          <div className="date-display">
+            <p>{formatDate(currentDate)}</p>
+          </div>
+          <div className="moon-button" onClick={handleMoonClick}>
+            <div className="moon-icon">{moonPhase.emoji}</div>
+            <p className="tap-text">月をタップして占いを見る</p>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="date-display">
+            <p>{formatDate(currentDate)}</p>
+          </div>
+          <MoonDisplay moonPhase={moonPhase} />
+          <Fortune fortune={fortune} />
+        </>
+      )}
 
       <footer className="app-footer">
         <p>月のリズムに合わせて、素敵な一日を過ごしてね 💫</p>
